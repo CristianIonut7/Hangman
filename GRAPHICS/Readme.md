@@ -5,14 +5,14 @@ Aici vor fi adaugate fisierele pentru grafica / UI (fisiere png/ jpeg pentru art
 
 PRIMA CATEGORIE - de tip "jpeg" - implica fisierele pentru artsyle, design, UI (prototip) pentru implementarea propriu-zisa - responsabil: RADU CÎRCIOROABĂ
 
-A DOILEA CATEGORIE - in python, folosind modulele de integrare C - Python, fisier(e) de configurare a graficii si de legatura cu codul din C - responsabili principali: ȘTEFAN LICAN, CRISTIAN PLEȘEANU | secundar: RADU CÎRCIOROABĂ
+A DOUA CATEGORIE - in python, folosind modulele de integrare C - Python, fisier(e) de configurare a graficii si de legatura cu codul din C - responsabili principali: ȘTEFAN LICAN, CRISTIAN PLEȘEANU | secundar: RADU CÎRCIOROABĂ
 
 ## CERINTE: 
 a) Implementare functii / module / API-uri pentru legarea codului-sursa de grafica
 
 b) GRAFICA - setata pentru o dimensiune fixa (fereastra), include pagina de inceput (titlu, new game, etc) si o alta pagina cu interfata jocului propriu zisa plus altele adiacente: cand jucatorul pierde, apar intrebarile pentru o noua (SI SINGURA) viata + camp pentru tastare litera/litere pt raspunsuri corecte, respectiv cand jucatorul ghiceste cuvantul
 
-c) FIsierele se incarca in folder-ul de "graphics" din branch-ul patch1-DEMO, adica aici: https://github.com/andrewen11/Hangman/blob/andrewen11-patch1-DEMO/GRAPHICS
+c) Fisierele se incarca in folder-ul de "graphics" din branch-ul patch1-DEMO, adica aici: https://github.com/andrewen11/Hangman/blob/andrewen11-patch1-DEMO/GRAPHICS
 
 ## a se tine cont ca in fereastra de intrebari sa se permita mai multe raspunsuri corecte - vezi mai jos:
 
