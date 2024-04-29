@@ -1,10 +1,18 @@
 # FISIERE - COORDONATOR: IONESCU RAUL-ANDREI
 
 ## DESCRIERE:
-Aici vor fi adaugate cele doua tipuri de fisiere: PRIMUL FISIER - de tip "csv" cu mai multe coloane de forma: intrebari, (raspuns) A, (raspuns) B, (raspuns) C, variante corecte; vor fi de folos cand jucatorul ramane fara vieti si nu vrea sa piarda AL DOILEA FISIER - de tip "txt", cu expresii/ cuvinte, fiecare pe cate un rand; acestea vor fi cheia jocului propriu-zis.
+Aici vor fi adaugate cele doua tipuri de fisiere:
+
+PRIMUL FISIER - de tip "csv" cu mai multe coloane de forma: intrebari, (raspuns) A, (raspuns) B, (raspuns) C, variante corecte; vor fi de folos cand jucatorul ramane fara vieti si nu vrea sa piarda
+
+AL DOILEA FISIER - de tip "txt", cu expresii/ cuvinte, fiecare pe cate un rand; acestea vor fi cheia jocului propriu-zis.
 
 ## CERINTE:
-a) 20 de intrebari cu variante multiple de raspuns (fisier csv) - se importa cele 6 - 7 din QUIZ 3 (a se vedea link-ul de mai jos) si se mai adauga alte intrebari din prezentare (a se vedea link-ul: Modulul 3) b) +150 cuvinte pentru fisierul txt (pot sa fie si expresii din 2 - 3 - 4 cuvinte), fiecare expresie/ cuvant pe un anumit rand pentru usurarea procesului de citire - NU SE FOLOSESC DELIMITATORI! c) FIsierele se incarca in folder-ul de fisiere din branch-ul patch1-DEMO, adica aici: https://github.com/andrewen11/Hangman/blob/andrewen11-patch1-DEMO/FISIERE
+a) 20 de intrebari cu variante multiple de raspuns (fisier csv) - se importa cele 6 - 7 din QUIZ 3 (a se vedea link-ul de mai jos) si se mai adauga alte intrebari din prezentare (a se vedea link-ul: Modulul 3)
+
+b) +150 cuvinte pentru fisierul txt (pot sa fie si expresii din 2 - 3 - 4 cuvinte), fiecare expresie/ cuvant pe un anumit rand pentru usurarea procesului de citire - NU SE FOLOSESC DELIMITATORI!
+
+c) FIsierele se incarca in folder-ul de fisiere din branch-ul patch1-DEMO, adica aici: https://github.com/andrewen11/Hangman/blob/andrewen11-patch1-DEMO/FISIERE
 
 ## MODEL FISIER .CSV:
 Intrebare, A, B, C, Raspuns corect
