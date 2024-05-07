@@ -2,11 +2,9 @@
  Proiect de gamification de tipul HANGMAN cu termeni din domeniul economiei circulare, sustenabile
 
 ## ROADMAP:
-DEADLINE: 7 / 8 MAI - prima versiune | 13 MAI - varianta finala
+DEADLINE ACTUALIZAT: 9 / 10 MAI - prima versiune | 13 / 14 MAI - varianta finala
 
-DISCUTII PE DISCORD: 29 / 30 APRILIE | 3 MAI | 7 / 8 MAI - ULTIMA IN FORMULA COMPLETA
-
-FIZIC: 13 MAI - IN FORMULA COMPLETA
+DISCUTII PE DISCORD / FIZIC: 7 / 8 MAI & 13 / 14 MAI
 
  
 ## DETALII DE UPLOAD:
@@ -150,4 +148,4 @@ Pe ce aspecte se bazeaza?, raspuns_a, raspuns_B, raspuns_C, raspuns_D, C
 
  C) *PENTRU INTEGRARE AUDIO & MISCELLANEOUS: https://www.youtube.com/watch?v=iM3kjbbKHQU
 
- ### DEADLINE: DEMO COD PROPRIU-ZIS: 3 MAI | DEMO COD + MODULE + INTEGRARE CORESPUNZATOARE: 7 MAI
+ ### DEADLINE: DEMO COD PROPRIU-ZIS: 9 MAI | DEMO COD + MODULE + INTEGRARE CORESPUNZATOARE: 10 MAI | VARIANTA FINALA: 14 MAI
