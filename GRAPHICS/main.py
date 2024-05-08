@@ -1,6 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 
+
 def resize_image(event):
     global original_image, background_image, image_item
     new_width = event.width
@@ -28,7 +29,7 @@ canvas = tk.Canvas(root)
 canvas.place(relwidth=1.0, relheight=1.0)
 
 # Load the original image
-original_image = Image.open("GRAPHICS/background.png")
+original_image = Image.open("background.png")
 
 # Resize the image to fit the window
 window_width = root.winfo_width()
@@ -43,7 +44,7 @@ image_item = canvas.create_image(0, 0, anchor=tk.NW, image=background_image)
 canvas.bind("<Configure>", resize_image)
 
 #start button
-start_image = Image.open("GRAPHICS/Start.png")
+start_image = Image.open("Start.png")
 start_image = ImageTk.PhotoImage(start_image)
 start_button = tk.Button(root, image=start_image,command= start_button_pressed)
 start_button.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
