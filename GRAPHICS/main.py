@@ -1,55 +1,57 @@
-import tkinter as tk
-from PIL import Image, ImageTk
+import pygame
+import os
+import sys
 
 
-def resize_image(event):
-    global original_image, background_image, image_item
-    new_width = event.width
-    new_height = event.height
-    resized_image = original_image.resize((new_width, new_height))
-    background_image = ImageTk.PhotoImage(resized_image)
-    canvas.itemconfig(image_item, image=background_image)
-    canvas.config(width=new_width, height=new_height)
+
+pygame.init()
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
+pygame.display.set_caption("Hangman Game")
+
+button_image = pygame.image.load("Start.png")  # Replace "button_image.png" with your image file
+button_rect = button_image.get_rect(center=(WIDTH // 2, HEIGHT // 2))
 
 
-def start_button_pressed():
+def game():
+    global screen
     print("Game started")
-    start_button.place_forget()
-    label = tk.Label(root, text="Game started")
-    label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+    # Add your game code here
+    background = pygame.image.load("ingame.jpeg")
+    background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
+    screen.blit(background, (0, 0))
+    pygame.display.update()
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.VIDEORESIZE:
+                screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+        background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
+        screen.blit(background, (0, 0))
+        pygame.display.update()
+
+def main():
+    global screen
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.VIDEORESIZE:
+                screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+        background = pygame.image.load("background.png")
+        background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
+        screen.blit(background, (0, 0))
+        button_rect = button_image.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
+        screen.blit(button_image, button_rect)
+        if button_rect.collidepoint(pygame.mouse.get_pos()):
+            if pygame.mouse.get_pressed()[0]:
+                game()
+        pygame.display.update()
 
 
 
-
-root = tk.Tk()
-root.title("HANGMAN Demo")
-root.geometry("600x400")
-
-canvas = tk.Canvas(root)
-canvas.place(relwidth=1.0, relheight=1.0)
-
-# Load the original image
-original_image = Image.open("background.png")
-
-# Resize the image to fit the window
-window_width = root.winfo_width()
-window_height = root.winfo_height()
-resized_image = original_image.resize((window_width, window_height))
-background_image = ImageTk.PhotoImage(resized_image)
-
-# Display the image on the canvas
-image_item = canvas.create_image(0, 0, anchor=tk.NW, image=background_image)
-
-# Bind the resize event to the canvas
-canvas.bind("<Configure>", resize_image)
-
-#start button
-start_image = Image.open("Start.png")
-start_image = ImageTk.PhotoImage(start_image)
-start_button = tk.Button(root, image=start_image,command= start_button_pressed)
-start_button.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-
-
-
-# Run the main loop
-root.mainloop()
+if __name__ == "__main__":
+    main()
