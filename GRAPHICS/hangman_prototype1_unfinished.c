@@ -11,16 +11,16 @@ typedef struct element
 } nod;
 
 //functie de extragere aleatorie a cuvantului de ghicit din lista de cuvinte
-void extrag_cuvant()
+char* extrag_cuvant()
 {
     FILE *fisier_text;
     int index_cuvant_exp; //marcheaza randul in care e afla cuvantul propus de ghicit
     fisier_text = fopen("cuvinte.txt", "rt");
-    char word_hangman[100];
+    char *word_hangman = (char *)malloc(100 * sizeof(char));
     if (fisier_text == NULL) //se verifica daca se poate efectua citirea din fisierul de cuvinte
     {
         printf("ERROR! THE WORD LIST FILE COULD NOT BE READ!");
-        return;
+        return 0;
     }
     else
     {
@@ -39,6 +39,7 @@ void extrag_cuvant()
     FILE *fisier_cuvant;
     fisier_cuvant = fopen("cuvant.txt", "w");
     fprintf(fisier_cuvant, "%s", word_hangman);
+    return word_hangman;
 
 }
 
@@ -66,20 +67,28 @@ void adaug_in_lista(char word_hangman[], int dimensiune, nod **inceput)
     }
 }
 
-void afisare_element_lista_CODIFICAT(nod *inceput)
+char* afisare_element_lista_CODIFICAT(nod *inceput)
 {
     nod *curent;
+    int i = 0;
+    char *elementcodificat = (char *)malloc(100 * sizeof(char));
     for (curent = inceput; curent != NULL; curent = curent->urmator)
     {
         if (curent->litera == ' ')
         {
             printf(" | ");
+            elementcodificat[i] = ' ';
+            i++;
         }
         else
         {
             printf("%c", curent->litera);
+            elementcodificat[i] = curent->litera;
+            i++;
         }
+
     }
+    return elementcodificat;
 }
 
 void modificare(nod **inceput2)
@@ -141,22 +150,53 @@ void ghicire(nod *inceput, nod *inceput2, int dimensiune, int nr_sanse, char wor
     }
 }
 
+char* codificare_cuvant(char cuvant_hangman[100], int dimensiune)
+{
+    char *elementcodificat = malloc(100 * sizeof(char));
+
+    for (int indice = 0; indice < dimensiune; indice++)
+    {
+        if (cuvant_hangman[indice] == ' ')
+        {
+            elementcodificat[indice] = ' ';
+
+        }
+        else
+        {
+            elementcodificat[indice] = '_';
+            elementcodificat[indice + 1] = ' ';
+        }
+    }
+
+    return elementcodificat;
+}
+
 int main()
 {
 
-    char cuvant_hangman[100], caracter;
+    char *cuvant_hangman, caracter;
     int dimensiune;
+    cuvant_hangman = (char *)malloc(100 * sizeof(char));
     nod *inceput = NULL, *inceput2 = NULL;
-    extrag_cuvant();
-    printf("THE WORD/EXPRESSION TO GUESS IS: %s", cuvant_hangman);
+    strcpy(cuvant_hangman,extrag_cuvant());
+    printf("THE WORD/EXPRESSION TO GUESS IS: %s\n", cuvant_hangman);
     dimensiune = strlen(cuvant_hangman);
     adaug_in_lista(cuvant_hangman, dimensiune, &inceput);
     adaug_in_lista(cuvant_hangman, dimensiune, &inceput2);
 
     modificare(&inceput2);
-    printf("\nELEMENTUL CODIFICAT DIN LISTA ESTE: ");
-    afisare_element_lista_CODIFICAT(inceput2);
+
     
-    ghicire(inceput, inceput2, dimensiune, 7, cuvant_hangman);
+
+    
+
+    
+    char *cuvant_codificat = (char *)malloc(100 * sizeof(char));
+    strcpy(cuvant_codificat, codificare_cuvant(cuvant_hangman, dimensiune));
+    printf("cuvant_codificat: %s", cuvant_codificat);
+    
+
+
+    //ghicire(inceput, inceput2, dimensiune, 7, cuvant_hangman);
     return 0;
 }

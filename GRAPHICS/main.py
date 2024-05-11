@@ -34,10 +34,25 @@ def game():
         if not word.strip():
             print("File is empty.")
     print(word)
-    word_underline = "_ " * len(word)
-    if " " in word:
-        index = word.index(" ")
-        word_underline = word_underline[:index * 2] + " " + word_underline[index * 2 + 1:]
+    
+    length = len(word)
+
+    lib.codificare_cuvant.argtypes = [ctypes.c_char_p, ctypes.c_int]
+    lib.codificare_cuvant.restype = ctypes.c_char_p
+
+    codificat = lib.codificare_cuvant(word.encode("utf-8"), length)
+
+    codificat = str(codificat) # convert from bytes to string
+
+    word_underline = "" # _ _ _ _ _ _ _ _ _
+    for i in codificat:
+        if i == "_":
+            word_underline += "_ "
+        if i == " ":
+            word_underline += "  "
+
+
+
 
     lib.extrag_cuvant()
 
@@ -160,3 +175,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
