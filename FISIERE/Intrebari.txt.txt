@@ -1,4 +1,4 @@
-Nr,Intrebare,variante raspuns,raspunsuri
+Nr,Intrebare,A,B,C,D,raspunsuri
 1.Circular economy represents:,a model of production and consumption that involves sharing,an industrial economy that is restorative or regenerative,an economic system that targets zero waste and pollution,an economic system in which the natural resources are turned into products that are ultimately destined to become waste,A&B&C
 2.The circular economy has the potential to contribute significantly to the:,only for SDG 11 and SDG 12,only for SDG 8 and SDG 9,only for SDG 7 SDG 11 and SDG 13, all the SDGs mentioned earlier,D
 3.Benefits of switching to a circular economy:,protect the environment,reduce raw material dependence,create jobs and save consumers money,A&B&C
