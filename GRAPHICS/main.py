@@ -20,6 +20,8 @@ random_image_rect = random_image_button.get_rect(topright=(WIDTH - 10, 10))
 font = pygame.font.Font(None, 48)
 running = True
 
+used_letters = []
+
 def remove_spaces(string):
     return string.replace(" ", "")
 
@@ -86,14 +88,19 @@ def game():
                             if word[i] == typed_letter:
                                 word_underline[i * 2] = typed_letter
                         word_underline = "".join(word_underline)
+                        used_letters.append(typed_letter)
 
                                     
                     else:
                         print("Incorrect")
                         print("Lives left:", lives)
-                        lives -= 1
+                        if typed_letter not in used_letters:
+                            lives -= 1
+                            used_letters.append(typed_letter)
 
 
+
+        
         match lives:
             case 6:
                 background = pygame.image.load("Assets\image-06.jpg")  
