@@ -2,7 +2,9 @@ import pygame
 import os
 import sys
 import time
+import ctypes
 
+lib = ctypes.CDLL("./lib.so")
 
 pygame.init()
 WIDTH, HEIGHT = 800, 600
@@ -20,22 +22,53 @@ running = True
 
 def remove_spaces(string):
     return string.replace(" ", "")
+
+
 def game():
     global screen,running
     print("Game started")
     # Add your game code here
-
     lives = 6
-    word = "XYZ"
-    word_underline = "_ " * len(word) #the word to be guessed
+    with open("./cuvant.txt", "r") as file:
+        word = file.read()
+        if not word.strip():
+            print("File is empty.")
+    print(word)
+    
+    length = len(word)
+
+    lib.codificare_cuvant.argtypes = [ctypes.c_char_p, ctypes.c_int]
+    lib.codificare_cuvant.restype = ctypes.c_char_p
+
+    codificat = lib.codificare_cuvant(word.encode("utf-8"), length)
+
+    codificat = str(codificat) # convert from bytes to string
+
+    word_underline = "" # _ _ _ _ _ _ _ _ _
+    for i in codificat:
+        if i == "_":
+            word_underline += "_ "
+        if i == " ":
+            word_underline += "  "
+
+
+
+
+    lib.extrag_cuvant()
+
+    
+    
+    print(word_underline)
+    
+
     background = pygame.image.load("Assets\image-06.jpg")
     background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
     screen.blit(background, (0, 0))
     pygame.display.update()
 
 
-    # XYZ
-    # _ _ _
+    # mediu verde
+    # _ _ _ _ _ _ _ _ _
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -45,16 +78,16 @@ def game():
                 screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
             elif event.type == pygame.KEYDOWN:
                 if event.key >= pygame.K_a and event.key <= pygame.K_z:
-                    typed_letter = chr(event.key).upper()
-                    print(typed_letter)
+                    typed_letter = chr(event.key).lower()
                     if typed_letter in word:
                         print("Correct")
-                        # Update the word with the correctly guessed letter
                         word_underline = list(word_underline)
                         for i in range(len(word)):
                             if word[i] == typed_letter:
                                 word_underline[i * 2] = typed_letter
                         word_underline = "".join(word_underline)
+
+                                    
                     else:
                         print("Incorrect")
                         print("Lives left:", lives)
@@ -62,11 +95,7 @@ def game():
 
        
 
-
                             
-                
-        
-        
         text_surface = font.render(word_underline, True, (0,0,0))
         text_rect = text_surface.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
 
@@ -83,10 +112,18 @@ def game():
             background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
             screen.blit(background, (0, 0))
             print("Game Over")
-            main()
+            python_executable = sys.executable
+    
+            # Get the path of the current script
+            script_path = os.path.abspath(__file__)
+    
+            # Call another instance of the program
+            os.execl(python_executable, python_executable, script_path)
+            
         # Check if the player has won
         copy = remove_spaces(word_underline)
-        if copy == word:
+        copyword = word.replace(" ", "")
+        if copy == copyword:
             print("You won!")
             background = pygame.image.load("Assets\Win.png")
             background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
@@ -138,3 +175,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
