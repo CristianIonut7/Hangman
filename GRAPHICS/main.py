@@ -60,7 +60,7 @@ def game():
     
     print(word_underline)
     
-
+            
     background = pygame.image.load("Assets\image-06.jpg")
     background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
     screen.blit(background, (0, 0))
@@ -93,9 +93,25 @@ def game():
                         print("Lives left:", lives)
                         lives -= 1
 
-       
 
-                            
+        match lives:
+            case 6:
+                background = pygame.image.load("Assets\image-06.jpg")  
+            case 5:
+                background = pygame.image.load("Assets\DnPdIe4A.jpeg")
+            case 4:
+                background = pygame.image.load("Assets\image-06.jpg")
+            case 3:
+                background = pygame.image.load("Assets\image-06.jpg")
+            case 2:
+                background = pygame.image.load("Assets\image-06.jpg")
+            case 1:
+                background = pygame.image.load("Assets\image-06.jpg")
+            case _:
+                background = pygame.image.load("Assets\image-06.jpg")
+
+        
+        background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))                    
         text_surface = font.render(word_underline, True, (0,0,0))
         text_rect = text_surface.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
 
