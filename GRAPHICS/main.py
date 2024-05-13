@@ -105,17 +105,23 @@ def game():
             case 6:
                 background = pygame.image.load("Assets\image-06.jpg")  
             case 5:
-                background = pygame.image.load("Assets\DnPdIe4A.jpeg")
+                background = pygame.image.load("Assets\Fundaluri\In-game1.png")
             case 4:
-                background = pygame.image.load("Assets\image-06.jpg")
+                background = pygame.image.load("Assets\Fundaluri\In-game2.png")
             case 3:
-                background = pygame.image.load("Assets\image-06.jpg")
+                background = pygame.image.load("Assets\Fundaluri\In-game3.png")
             case 2:
-                background = pygame.image.load("Assets\image-06.jpg")
+                background = pygame.image.load("Assets\Fundaluri\In-game4.png")
             case 1:
-                background = pygame.image.load("Assets\image-06.jpg")
+                background = pygame.image.load("Assets\Fundaluri\In-game5.png")
             case _:
                 background = pygame.image.load("Assets\image-06.jpg")
+
+
+        if lives == 1:
+            pass #bonus question
+            
+
 
         
         background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))                    
@@ -123,6 +129,8 @@ def game():
         text_rect = text_surface.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
 
         lives_surface = font.render(f"Lives: {lives}", True, (0,0,0))
+
+        
 
         screen.blit(background, (0, 0))
         screen.blit(text_surface, text_rect)
