@@ -1,4 +1,5 @@
 # Hangman  - UNSTPB - ACS | IS - 1AC, 2024
+
  Proiect de gamification de tipul HANGMAN cu termeni din domeniul economiei circulare, sustenabile
 
 ## ROADMAP:
@@ -106,6 +107,11 @@ Pe ce aspecte se bazeaza?, raspuns_a, raspuns_B, raspuns_C, raspuns_D, C
  F) DOCUMENTARE MULTIPROCESSING / API-URI: https://docs.python.org/3/library/multiprocessing.html
 
  ### DEADLINE: GRAFICA - 2 MAI | PRIMA VERSIUNE - 7 MAI | VERSIUNEA 1 CU EFECTE AUDIO: 8 MAI
+=======
+## Proiect de gamification de tipul HANGMAN cu termeni din domeniul economiei circulare, sustenabile
+### Pentru proiect - varianta demo - se lucreaza din branch-ul: andrewen11-patch1-DEMO ---->>>> LINK: https://github.com/andrewen11/Hangman/tree/andrewen11-patch1-DEMO
+#### *A SE CITI SECTIUNEA "README" DE ACOLO!!!
+
  
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
