@@ -18,11 +18,15 @@ random_image_rect = random_image_button.get_rect(topright=(WIDTH - 10, 10))
 
 
 font = pygame.font.Font(None, 48)
+fontquestion = pygame.font.Font("Assets\Fonts\DSketch.otf",80)
+fonttext = pygame.font.Font("Assets\Fonts\scoobydoo.ttf",22)
+fonttext2 = pygame.font.Font("Assets\Fonts\scoobydoo.ttf",20)
 running = True
 
 used_letters = []
 
 lives = 6
+score = 0
 
 def remove_spaces(string):
     return string.replace(" ", "")
@@ -80,23 +84,61 @@ def intrebare():
             damintrebare = False
         
         background = pygame.image.load("Assets\Question display mode.png")
-        text_intrebare = font.render(intrebare, True, (0,0,0))
-        text_vara = font.render(vara, True, (0,0,0))
-        text_varb = font.render(varb, True, (0,0,0))
-        text_varc = font.render(varc, True, (0,0,0))
-        text_vard = font.render(vard, True, (0,0,0))
+        text = "QUESTION"
+        text_surface = fontquestion.render(text, True, (0,0,0))
+        text_rect = text_surface.get_rect(center=(screen.get_width() // 2, screen.get_height()-(screen.get_height()-50)))
+        text_intrebare = fonttext.render(intrebare, True, (0,0,0))
+        text_vara = fonttext2.render(vara, True, (0,0,0))
+        text_varb = fonttext2.render(varb, True, (0,0,0))
+        text_varc = fonttext2.render(varc, True, (0,0,0))
+        text_vard = fonttext2.render(vard, True, (0,0,0))
         screen.blit(background, (0, 0))
+        screen.blit(text_surface, text_rect)
         screen.blit(text_intrebare, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-100)))
-        screen.blit(text_vara, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-150)))
-        screen.blit(text_varb, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-200)))
-        screen.blit(text_varc, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-250)))
-        screen.blit(text_vard, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-300)))
+        screen.blit(text_vara, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-200)))
+        screen.blit(text_varb, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-250)))
+        screen.blit(text_varc, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-300)))
+        screen.blit(text_vard, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-350)))
         
-        pygame.display.update()        
+        pygame.display.update()  
+
+def win():
+    global score
+    print("You won!")
+    score += 100
+    while 1:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        background = pygame.image.load("Assets\imaginefinal.png")
+        background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
+        screen.blit(background, (0, 0))
+        pygame.display.update()
+        time.sleep(3)
+        game()      
+
+
+def lose():
+    global score
+    score = 0
+    while 1:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        background = pygame.image.load("Assets\lose.png")
+        background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
+        screen.blit(background, (0, 0))
+        print("Game Over")
+        pygame.display.update()
+        game()
+
 
 def game():
     
     global screen,running,lives
+    lives = 6
     print("Game started")
     # Add your game code here
     with open("./cuvant.txt", "r") as file:
@@ -125,6 +167,7 @@ def game():
 
 
     lib.extrag_cuvant()
+
 
     
     
@@ -213,17 +256,7 @@ def game():
 
 
         if lives == 0 and damintrebare == False:
-            background = pygame.image.load("Assets\lose.png")
-            background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
-            screen.blit(background, (0, 0))
-            print("Game Over")
-            python_executable = sys.executable
-                    
-            # Get the path of the current script
-            script_path = os.path.abspath(__file__)
-                    
-            # Call another instance of the program
-            os.execl(python_executable, python_executable, script_path)
+            lose()
 
 
 
@@ -236,24 +269,20 @@ def game():
         text_rect = text_surface.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
 
         lives_surface = font.render(f"Lives: {lives}", True, (0,0,0))
-
+        score_surface = font.render(f"Score: {score}", True, (0,0,0))
         
 
         screen.blit(background, (0, 0))
         screen.blit(text_surface, text_rect)
         screen.blit(lives_surface, (10, 10))
+        screen.blit(score_surface, (10, 50))
 
 
         # Check if the player has won
         copy = remove_spaces(word_underline)
         copyword = word.replace(" ", "")
-        if copy == copyword:
-            print("You won!")
-            background = pygame.image.load("Assets\Win.png")
-            background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
-            screen.blit(background, (0, 0))
-        
-        
+        if copy == copyword and copy != "":
+            win()
 
         pygame.display.update()
 

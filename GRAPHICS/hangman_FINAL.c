@@ -50,6 +50,7 @@ char* extrag_cuvant()
     FILE *fisier_cuvant;
     fisier_cuvant = fopen("cuvant.txt", "w");
     fprintf(fisier_cuvant, "%s", word_hangman);
+    fflush(fisier_cuvant);
     return word_hangman;
 
 }
@@ -133,6 +134,9 @@ void extrag_intrebare(char intrebari_hangman[], intrebare *intrebatoare)
     fprintf(fisier_intrebare, "C)%s\n", intrebatoare->var_C);
     fprintf(fisier_intrebare, "D)%s\n", intrebatoare->var_D);
     fprintf(fisier_rapuns, "%s", intrebatoare->raspuns);
+
+    fflush(fisier_intrebare);
+    fflush(fisier_rapuns);
     fclose(fisier_intrebare);
     fclose(fisier_rapuns);
 }
