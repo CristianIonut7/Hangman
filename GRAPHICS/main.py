@@ -21,6 +21,7 @@ font = pygame.font.Font(None, 48)
 fontquestion = pygame.font.Font("Assets\Fonts\DSketch.otf",80)
 fonttext = pygame.font.Font("Assets\Fonts\scoobydoo.ttf",22)
 fonttext2 = pygame.font.Font("Assets\Fonts\scoobydoo.ttf",20)
+fonttext3 = pygame.font.Font("Assets\Fonts\scoobydoo.ttf",25)
 running = True
 
 used_letters = []
@@ -68,6 +69,7 @@ def intrebare():
 
     runintrebare = True
     raspunsjucator = ""
+
     while runintrebare:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -75,13 +77,24 @@ def intrebare():
                 quit()
             if event.type == pygame.KEYDOWN:
                 raspunsjucator += event.unicode
-            
                 
-        if raspunsjucator == raspuns:
-            global lives
-            runintrebare = False
-            lives +=2
-            damintrebare = False
+        RASPUNS = fonttext3.render(raspunsjucator, True, (0,0,0))
+        raspunsjucator_rect = RASPUNS.get_rect(center=(screen.get_width() // 2, screen.get_height()-(screen.get_height()-500)))
+        raspunsjucator = raspunsjucator.upper()
+        print(raspunsjucator)
+        if pygame.key.get_pressed()[pygame.K_RETURN]:
+            raspunsjucator = raspunsjucator.upper()
+            raspunsjucator = raspunsjucator.strip()
+            if raspunsjucator == raspuns:
+                print("Correct")
+                global lives
+                runintrebare = False
+                lives +=2
+                damintrebare = False
+                return
+            else:
+                lose()
+        
         
         background = pygame.image.load("Assets\Question display mode.png")
         text = "QUESTION"
@@ -92,6 +105,8 @@ def intrebare():
         text_varb = fonttext2.render(varb, True, (0,0,0))
         text_varc = fonttext2.render(varc, True, (0,0,0))
         text_vard = fonttext2.render(vard, True, (0,0,0))
+       
+
         screen.blit(background, (0, 0))
         screen.blit(text_surface, text_rect)
         screen.blit(text_intrebare, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-100)))
@@ -99,6 +114,7 @@ def intrebare():
         screen.blit(text_varb, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-250)))
         screen.blit(text_varc, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-300)))
         screen.blit(text_vard, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-350)))
+        screen.blit(RASPUNS, raspunsjucator_rect)
         
         pygame.display.update()  
 
@@ -121,7 +137,7 @@ def win():
 
 def lose():
     global score
-    score = 0
+    score_text = font.render(f"Your score was: {score}", True, (0,0,0))
     while 1:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -130,9 +146,10 @@ def lose():
         background = pygame.image.load("Assets\lose.png")
         background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
         screen.blit(background, (0, 0))
+        screen.blit(score_text, (10, screen.get_height() // 2 + 50))
         print("Game Over")
         pygame.display.update()
-        game()
+        
 
 
 def game():
@@ -247,7 +264,7 @@ def game():
                             runintrebare = False
 
                 lives_surface = font.render(f"Lives: {lives}", True, (0,0,0))
-                text_surface = font.render(timetochoose, True, (0,0,0))
+                text_surface = fonttext3.render(timetochoose, True, (0,0,0))
                 screen.blit(text_surface,(screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-100)))
                 screen.blit(lives_surface, (10, 10))
                 pygame.display.update()
