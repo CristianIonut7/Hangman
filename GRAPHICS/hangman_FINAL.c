@@ -331,32 +331,52 @@ char* codificare_cuvant(char cuvant_hangman[100], int dimensiune)
     return elementcodificat;
 }
 
+typedef struct Node {
+    char letter;
+    struct Node* next;
+} Node;
+
+
+
+Node* create_node(char letter) {
+    Node* new_node = (Node*)malloc(sizeof(Node));
+    new_node->letter = letter;
+    new_node->next = NULL;
+    return new_node;
+}
+
+// Append a new node at the end of the list
+void append(Node** head_ref, char new_letter) {
+    Node* new_node = create_node(new_letter);
+    if (*head_ref == NULL) {
+        *head_ref = new_node;
+        return;
+    }
+    Node* last = *head_ref;
+    while (last->next != NULL) {
+        last = last->next;
+    }
+    last->next = new_node;
+
+
+}
+
+char* list_to_string(Node* head) {
+    static char buffer[256];
+    int pos = 0;
+    Node* current = head;
+    while (current != NULL && pos < sizeof(buffer) - 2) {
+        buffer[pos++] = current->letter;
+        buffer[pos++] = ' ';
+        current = current->next;
+    }
+    buffer[pos] = '\0';
+    return buffer;
+}
+
 int main()
 {
 
-    char *cuvant_hangman, caracter;
-    int dimensiune;
-    cuvant_hangman = (char *)malloc(100 * sizeof(char));
-    nod *inceput = NULL, *inceput2 = NULL;
-    strcpy(cuvant_hangman,extrag_cuvant());
-    printf("THE WORD/EXPRESSION TO GUESS IS: %s\n", cuvant_hangman);
-    dimensiune = strlen(cuvant_hangman);
-    adaug_in_lista(cuvant_hangman, dimensiune, &inceput);
-    adaug_in_lista(cuvant_hangman, dimensiune, &inceput2);
-
-    modificare(&inceput2);
-
     
-
-    
-
-    
-    char *cuvant_codificat = (char *)malloc(100 * sizeof(char));
-    strcpy(cuvant_codificat, codificare_cuvant(cuvant_hangman, dimensiune));
-    printf("cuvant_codificat: %s", cuvant_codificat);
-    
-
-
-    //ghicire(inceput, inceput2, dimensiune, 7, cuvant_hangman);
     return 0;
 }
