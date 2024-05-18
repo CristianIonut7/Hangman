@@ -3,6 +3,14 @@ import os
 import sys
 import time
 import ctypes
+import subprocess
+
+module = "pygame"
+try:
+    subprocess.check_call(['python', '-m', 'pip', 'install', module])
+except subprocess.CalledProcessError:
+    print(f"Failed to install {module}")
+    sys.exit(1)
 
 # Load the shared library from C
 lib = ctypes.CDLL("./lib.so")
@@ -35,6 +43,8 @@ button_image = pygame.image.load("Assets\Start_button.png")
 button_rect = button_image.get_rect(center=(WIDTH // 2, HEIGHT // 2))
 random_image_button = pygame.image.load("Assets\surprise.png")
 random_image_rect = random_image_button.get_rect(topright=(WIDTH - 10, 10))
+
+random_image_button.set_alpha(0)
 
 
 font = pygame.font.Font(None, 48)
