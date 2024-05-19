@@ -5,6 +5,8 @@ import time
 import ctypes
 import subprocess
 
+
+
 module = "pygame"
 try:
     subprocess.check_call(['python', '-m', 'pip', 'install', module])
@@ -14,7 +16,6 @@ except subprocess.CalledProcessError:
 
 # Load the shared library from C
 lib = ctypes.CDLL("./lib.so")
-
 class Node(ctypes.Structure):
     pass
 
@@ -33,7 +34,7 @@ lib.list_to_string.restype = ctypes.c_char_p
 
 
 pygame.init()
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1080, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption("Hangman Game")
 
@@ -115,7 +116,6 @@ def intrebare():
     print(varb)
     print(varc)
     print(vard)
-    print(raspuns)
 
     runintrebare = True
     raspunsjucator = ""
@@ -238,7 +238,6 @@ def game():
         word = file.read()
         if not word.strip():
             print("File is empty.")
-    print(word)
     
     length = len(word)
 

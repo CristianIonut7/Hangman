@@ -1,2 +1,3 @@
 pip install pygame
-python3 main.py
+Start /B python3 main.py &
+exit
