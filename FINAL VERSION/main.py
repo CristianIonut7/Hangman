@@ -80,6 +80,7 @@ def remove_spaces(string):
 
 # Function to generate a bonus question 
 def intrebare():
+    print("pl")
     global screen,running
     screen.fill((255, 255, 255))
 
@@ -118,6 +119,7 @@ def intrebare():
     raspunsjucator = ""
 
     while runintrebare:
+        print("pl")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()

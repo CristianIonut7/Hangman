@@ -36,7 +36,7 @@ char* extrag_cuvant()
     else
     {
         srand(time(0)); //Se asigura ca la fiecare utilizare / timp de executie se alege cu cuvant diferit din cadrul generatorului de cuvinte
-        index_cuvant_exp = rand() % 10;
+        index_cuvant_exp = rand() % 100;
 
         for (int indice = 1; indice < index_cuvant_exp; indice++)
         {
