@@ -123,14 +123,6 @@ def intrebare():
     
     
     while runintrebare:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-            if event.type == pygame.KEYDOWN:
-                raspunsjucator += event.unicode
-            if event.type == pygame.VIDEORESIZE:
-                screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
                 
         RASPUNS = fonttext3.render(raspunsjucator, True, (0,0,0))
         raspunsjucator_rect = RASPUNS.get_rect(center=(screen.get_width() // 2, screen.get_height()-(screen.get_height()-500)))
@@ -172,6 +164,15 @@ def intrebare():
         screen.blit(text_vard, (screen.get_width()-(screen.get_width()-100), screen.get_height()-(screen.get_height()-350)))
         screen.blit(exemplu_text, (screen.get_width()-(screen.get_width()-100), screen.get_height()-(screen.get_height()-400)))
         screen.blit(RASPUNS, raspunsjucator_rect)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                raspunsjucator += event.unicode
+            if event.type == pygame.VIDEORESIZE:
+                screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
         
         pygame.display.update()  
 
