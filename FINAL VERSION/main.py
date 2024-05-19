@@ -346,7 +346,7 @@ def game():
 
                 lives_surface = font.render(f"Lives: {lives}", True, (0,0,0))
                 text_surface = fonttext3.render(timetochoose, True, (0,0,0))
-                screen.blit(text_surface,(screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-100)))
+                screen.blit(text_surface,(screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-120)))
                 screen.blit(lives_surface, (10, 10))
                 pygame.display.update()
                 
