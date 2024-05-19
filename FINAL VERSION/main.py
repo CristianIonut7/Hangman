@@ -61,6 +61,7 @@ used_letters = [] # list of used letters for checking
 
 lives = 6
 score = 0
+chances = 1
 
 
 # Load the sounds
@@ -80,7 +81,9 @@ def remove_spaces(string):
 
 # Function to generate a bonus question 
 def intrebare():
-    global screen,running
+    print("pl")
+    global screen,running,chances
+    chances = 0
     screen.fill((255, 255, 255))
 
     ###  generate bonus question ### using function from C
@@ -117,6 +120,8 @@ def intrebare():
     runintrebare = True
     raspunsjucator = ""
 
+    
+    
     while runintrebare:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -130,7 +135,6 @@ def intrebare():
         RASPUNS = fonttext3.render(raspunsjucator, True, (0,0,0))
         raspunsjucator_rect = RASPUNS.get_rect(center=(screen.get_width() // 2, screen.get_height()-(screen.get_height()-500)))
         raspunsjucator = raspunsjucator.upper()
-        print(raspunsjucator)
         if pygame.key.get_pressed()[pygame.K_BACKSPACE]:
             raspunsjucator = raspunsjucator[:-1]
         if pygame.key.get_pressed()[pygame.K_RETURN]:
@@ -161,12 +165,12 @@ def intrebare():
 
         screen.blit(background, (0, 0))
         screen.blit(text_surface, text_rect)
-        screen.blit(text_intrebare, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-100)))
-        screen.blit(text_vara, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-200)))
-        screen.blit(text_varb, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-250)))
-        screen.blit(text_varc, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-300)))
-        screen.blit(text_vard, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-350)))
-        screen.blit(exemplu_text, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-400)))
+        screen.blit(text_intrebare, (screen.get_width()-(screen.get_width()-100), screen.get_height()-(screen.get_height()-100)))
+        screen.blit(text_vara, (screen.get_width()-(screen.get_width()-100), screen.get_height()-(screen.get_height()-200)))
+        screen.blit(text_varb, (screen.get_width()-(screen.get_width()-100), screen.get_height()-(screen.get_height()-250)))
+        screen.blit(text_varc, (screen.get_width()-(screen.get_width()-100), screen.get_height()-(screen.get_height()-300)))
+        screen.blit(text_vard, (screen.get_width()-(screen.get_width()-100), screen.get_height()-(screen.get_height()-350)))
+        screen.blit(exemplu_text, (screen.get_width()-(screen.get_width()-100), screen.get_height()-(screen.get_height()-400)))
         screen.blit(RASPUNS, raspunsjucator_rect)
         
         pygame.display.update()  
@@ -201,7 +205,8 @@ def lose():
     used_letters = []
     lose_music.play()
     score_text = fonttext4.render(f"Your score was: {score}", True, (0,0,0))
-    while 1:
+    run = True
+    while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -215,18 +220,17 @@ def lose():
         time.sleep(3)
         score = 0
         litere_folosite = ctypes.POINTER(Node)()  #list of used letters for display
-        game()
-
-    
+        break
+    subprocess.Popen([sys.executable] + sys.argv)
+    quit()
 
 
 
 def game():
     
-    global screen,running,lives,used_letters
+    global screen,running,lives,used_letters,chances
     lives = 6
     used_letters = []
-   
 
     print("Game started")
     # Add your game code here
@@ -325,7 +329,7 @@ def game():
 
         demintrebare = False
         runintrebare = True
-        if lives == 0:
+        if lives == 0 and chances == 1:
             while runintrebare:
                 timetochoose = "Do you want to answer a bonus question? y/n"
                 for event in pygame.event.get():
@@ -349,13 +353,16 @@ def game():
                 
 
         # Check if the player has lost and he doesn't have to answer a bonus question
-        if lives == 0 and damintrebare == False:
+        if (lives == 0 and damintrebare == False):
             lose()
 
-
+        
         # Check if the player has lost and has to answer a bonus question
         if lives == 0 and damintrebare == True:
             intrebare()
+        
+        if chances == 0:
+            damintrebare = False
 
 
         litere_folosite_str = display_used_letters(litere_folosite)
@@ -378,7 +385,7 @@ def game():
         screen.blit(lives_surface, (10, 10))
         screen.blit(score_surface, (10, 50))
         screen.blit(text_surface, text_rect)
-        screen.blit(litere, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-150)))
+        screen.blit(litere, (screen.get_width()-(screen.get_width()-10), screen.get_height()-(screen.get_height()-94)))
         
 
 
