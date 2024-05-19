@@ -80,7 +80,6 @@ def remove_spaces(string):
 
 # Function to generate a bonus question 
 def intrebare():
-    print("pl")
     global screen,running
     screen.fill((255, 255, 255))
 
@@ -119,7 +118,6 @@ def intrebare():
     raspunsjucator = ""
 
     while runintrebare:
-        print("pl")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -177,10 +175,12 @@ def intrebare():
 # Function to display the win screen
 def win():
     global score,litere_folosite
+    litere_folosite = ctypes.POINTER(Node)()
+    used_letters = []
     print("You won!")
     score += 100
     win_music.play()
-    litere_folosite = ctypes.POINTER(Node)()  #list of used letters for display
+    litere_folosite = ctypes.POINTER(Node)()
     while 1:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -191,12 +191,14 @@ def win():
         screen.blit(background, (0, 0))
         pygame.display.update()
         time.sleep(3)
-        game()      
+        game()         
 
 
 # Function to display the lose screen
 def lose():
     global score,litere_folosite
+    litere_folosite = ctypes.POINTER(Node)()
+    used_letters = []
     lose_music.play()
     score_text = fonttext4.render(f"Your score was: {score}", True, (0,0,0))
     while 1:
@@ -221,8 +223,9 @@ def lose():
 
 def game():
     
-    global screen,running,lives
+    global screen,running,lives,used_letters
     lives = 6
+    used_letters = []
    
 
     print("Game started")
@@ -292,11 +295,11 @@ def game():
 
                                     
                     else:
-                        lives -= 1
                         wrong_letter.play()
                         print("Incorrect")
                         print("Lives left:", lives)
                         if typed_letter not in used_letters:
+                            lives -= 1
                             used_letters.append(typed_letter)
                             lib.append(ctypes.byref(litere_folosite), typed_letter.encode()) #adaugare litera in lista
 
