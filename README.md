@@ -1,7 +1,19 @@
 # Hangman  - UNSTPB - ACS | IS - 1AC, 2024
 
- Proiect de gamification de tipul HANGMAN cu termeni din domeniul economiei circulare, sustenabile
+Proiect de gamification de tipul HANGMAN cu termeni din domeniul economiei circulare, sustenabile - modul din cadrul proiectului european: "Gender, Digitalization, Green: Ensuring a Sustainable Future for all in Europe"
 
+
+## UPDATE - 28.05.2024
+1) Actualizare branch "main"
+2) Repository public
+3) PRECIZARI - executabilul este inlocuit de un batch file intrucat, la crearea initiala a executabilului, existau mici probleme care nu au putut fi corectate in intervalul respectiv (exemplu: jocul era deschis, nu se vedea pe ecran, dar aparea iconita in taskbar; prin interactiunea cu bara de activitati, jocul rula corespunzator; un alt exemplu mai putin placut e cel in care deschiderea executabilului se facea concomitent cu deschiderea consolei; eliminarea acestor doua caracteristici a condus, ulterior, la alte probleme - fara consola pornita, fisierul .exe era detectat ca amenintare de catre antivirus sau chiar drept Trojan (in cazul Malwarebytes) si era blocat, implicit, de acesta). 
+
+
+## UPDATE - 19.05.2024
+- Toate fisierele necesare se regasesc in branch-ul "andrewen11-patch1-DEMO"!
+- PROIECT FINALIZAT!
+
+  
 ## ROADMAP:
 DEADLINE ACTUALIZAT: 9 / 10 MAI - prima versiune | 13 / 14 MAI - varianta finala
 
@@ -37,7 +49,7 @@ AL DOILEA FISIER - de tip "txt", cu expresii/ cuvinte, fiecare pe cate un rand; 
 ### CERINTE: 
 a) 20 de intrebari cu variante multiple de raspuns (fisier csv) - se importa cele 6 - 7 din QUIZ 3 (a se vedea link-ul de mai jos) si se mai adauga alte intrebari din prezentare (a se vedea link-ul: Modulul 3)
 
-b) +150 cuvinte pentru fisierul txt (pot sa fie si expresii din 2 - 3 - 4 cuvinte), fiecare expresie/ cuvant pe un anumit rand pentru usurarea procesului de citire - NU SE FOLOSESC DELIMITATORI!
+b) 100 cuvinte pentru fisierul txt (pot sa fie si expresii din 2 - 3 cuvinte), fiecare expresie/ cuvant pe un anumit rand pentru usurarea procesului de citire - NU SE FOLOSESC DELIMITATORI!
 
 c) FIsierele se incarca in folder-ul de fisiere din branch-ul patch1-DEMO, adica aici: https://github.com/andrewen11/Hangman/blob/andrewen11-patch1-DEMO/FISIERE
 
@@ -107,10 +119,6 @@ Pe ce aspecte se bazeaza?, raspuns_a, raspuns_B, raspuns_C, raspuns_D, C
  F) DOCUMENTARE MULTIPROCESSING / API-URI: https://docs.python.org/3/library/multiprocessing.html
 
  ### DEADLINE: GRAFICA - 2 MAI | PRIMA VERSIUNE - 7 MAI | VERSIUNEA 1 CU EFECTE AUDIO: 8 MAI
-=======
-## Proiect de gamification de tipul HANGMAN cu termeni din domeniul economiei circulare, sustenabile
-### Pentru proiect - varianta demo - se lucreaza din branch-ul: andrewen11-patch1-DEMO ---->>>> LINK: https://github.com/andrewen11/Hangman/tree/andrewen11-patch1-DEMO
-#### *A SE CITI SECTIUNEA "README" DE ACOLO!!!
 
  
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -155,3 +163,9 @@ Pe ce aspecte se bazeaza?, raspuns_a, raspuns_B, raspuns_C, raspuns_D, C
  C) *PENTRU INTEGRARE AUDIO & MISCELLANEOUS: https://www.youtube.com/watch?v=iM3kjbbKHQU
 
  ### DEADLINE: DEMO COD PROPRIU-ZIS: 9 MAI | DEMO COD + MODULE + INTEGRARE CORESPUNZATOARE: 10 MAI | VARIANTA FINALA: 14 MAI
+
+-----------------------------------------------------------------------------------------------------------
+## UPDATE 30.04.2024
+### Proiect de gamification de tipul HANGMAN cu termeni din domeniul economiei circulare, sustenabile
+#### Pentru proiect - varianta demo - se lucreaza din branch-ul: andrewen11-patch1-DEMO ---->>>> LINK: https://github.com/andrewen11/Hangman/tree/andrewen11-patch1-DEMO
+#### *A SE CITI SECTIUNEA "README" DE ACOLO!!!
